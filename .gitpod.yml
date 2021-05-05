@@ -1,0 +1,20 @@
+image:
+  file: .gitpod.Dockerfile
+
+# List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 5013
+    onOpen: ignore
+  - port: 3000
+
+# List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - prebuild: git clone https://github.com/eclipse-glsp/glsp-examples.git && cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install && cd ../../client && yarn && cd ../../.. &&  mkdir -p ./glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/test/java/org/eclipse/glsp/example/minimal/handler/ && cp .tutorial/test/TestMinimalCreateNodeOperationHandler.java ./glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/test/java/org/eclipse/glsp/example/minimal/handler/ && cp .tutorial/pom.xml ./glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/
+
+vscode:
+  extensions:
+    - minrows.educode
+
+github:
+  prebuilds:
+    master: true
