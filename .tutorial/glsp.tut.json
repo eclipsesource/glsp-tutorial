@@ -1,0 +1,432 @@
+{
+	"title": "GLSP Tutorial",
+	"description": "Diagram editors in the web with Eclipse GLSP",
+	"tutorialFolder": "glsp-examples",
+	"typeId": "#tutorial",
+	"exercises": [
+		{
+			"title": "Introduction",
+			"description": "Getting started learning the basics of the Eclipse Graphical Language Server Platform (GLSP)",
+			"typeId": "#exercise",
+			"content": [
+				{
+					"html": "<h2>Eclipse Graphical Language Server Platform (GLSP)</h2><br/><p>GLSP is an extensible open source framework to build custom diagram editors in the web/cloud. These editors can be deployed stand-alone or integrated into a web-based IDE such as Eclipse Theia or VS Code.</p>"
+				},
+				{
+					"image": {
+						"src": "https://www.eclipse.org/glsp/images/diagramanimated.gif",
+						"description": "GLSP",
+						"width": "80%"
+					}
+				},
+				{
+					"html": "<p>The Eclipse GLSP Project consists of a Diagram client and a Graphical Language Server. The Diagram client is responsible for the visual representation, while the Graphical Language Server is responsible for the deeper logic behind the modeling language. They are connected via the Graphical Language Server Protocol.</p>"
+				},
+				{
+					"image": {
+						"src": "https://www.eclipse.org/glsp/images/glspoverview.png",
+						"description": "GLSP",
+						"width": "80%"
+					}
+				},
+				{
+					"html": "<p>We will have a closer look at the components:<ul><li>Graphical Model Editor Client</li><ul><li>The client is implemented using HTML5, Typescript, Sprotty and SVG. The generic GLSP diagram client can be connected to any domain-specific GLSP server via the defined protocol to support a specific diagram type. Furthermore, the diagram client can be customized and integrated in a website, a VS Code CLient, a Theia Client or run as a standalone Client.</li></ul><li>Graphical Language Server Protocol</li><ul><li>Following the successful pattern provided by the language server protocol (LSP) for textual languages, GLSP provides a defined protocol for the communication between the GLSP client and the server. In this modular architecture, server and client are well encapsulated and can be developed in an independant way.</li></ul><li>Graphical Language Server</li><ul><li>Enabled by the flexible protocol-based architecture, a domain-specific GLSP server can be implemented in any preferred technology. Therefore, you can easily integrate a GLSP server into an existing environment and reuse the domain-specific business and diagram logic. GLSP provides a frame for the implementation of GLSP servers using Java, as well as integrations with EMF and other existing modeling technologies.</li></ul></ul></p>"
+				},
+				{
+					"html": "<p>In the following exercises we will show you how you can build and modify a simple version yourself. We will integrate the client in Eclipse Theia and use a Java Graphical Language Server</p>"
+				}
+			]
+		},
+		{
+			"title": "Setup workspace (optional)",
+			"description": "Set up the workspace for the tutorial",
+			"typeId": "#exercise",
+			"content": [
+				{
+					"html": "<p><i>If you are following this tutorial inside the online IDE GitPod, you can skip this step, since the </i><code>glsp-examles</code><i> folder has already been cloned into your workspace and the dependencies installed running </i><code>mvn clean install</code><i> and </i><code>yarn</code><i> in the server and client respectively.</i></p><p>If you follow this tutorial offline, or without GitPods prebuild functionality, you can do these steps by yourself on another workspace.<br>Please follow these steps:<br>Clone <a href='https://github.com/eclipse-glsp/glsp-examples.git'>GLSP Repository</a> into your workspace.<br>Chage directory and run: <br><code>cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install<br>cd ../../client && yarn</code><br>from the terminal</p><p>If you click on 'SOLVE' at the bottom you can do these steps automatically.</p><p>After that, to run the minimal example click on the button below or run the following commands in the terminal.<br><code>cd minimal/client<br>yarn start:browser</code></p><p>Again we have built the Button below to do that automatically:</p>"
+				},
+				{
+					"button": {
+						"text": "Build Minimal Example",
+						"commands": [
+							{
+								"terminalCommands": [
+									"kill -9 $(lsof -t -i:3000)",
+									"kill -9 $(lsof -t -i:5013)",
+									"cd glsp-examples/minimal/client && yarn start:browser"
+								]
+							}
+						]
+					}
+				},
+				{
+					"html": "<p>You should now be able to see the boilerplate of the minimal-glsp example on Port 3000.<br>It might be necessary to refresh the page after waiting some second when you are working inside GitPod.<br>If you're following the tutorial offline, open a browser and navigate to <code>localhost:3000</code>.</p>"
+				}
+			],
+			"test": [
+				{
+					"tests": [
+						{
+							"testName": "Checking files in current directory",
+							"command": {
+								"checkIfFilesExist": [
+									"glsp-examples/.gitignore",
+									"glsp-examples/README.md",
+									"glsp-examples/CONTRIBUTING.md",
+									"glsp-examples/Jenkinsfile",
+									"glsp-examples/LICENSE",
+									"glsp-examples/minimal/client/workspace/example.minimal",
+									"glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/handler/MinimalCreateNodeOperationHandler.java",
+									"glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/MinimalDiagramConfiguration.java",
+									"glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/MinimalGLSPModule.java",
+									"glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/MinimalServerLauncher.java"
+								]
+							}
+						}
+					]
+				}
+			],
+			"solve": [
+				{
+					"terminalCommands": [
+						"git clone https://github.com/eclipse-glsp/glsp-examples.git",
+						"cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install",
+						"cd glsp-examples/minimal/client && yarn"
+					]
+				}
+			],
+			"cleanState": [
+				{
+					"cleanExerciseFolder": {}
+				}
+			]
+		},
+		{
+			"title": "The Minimal GLSP Module",
+			"description": "Learn how the minimal glsp example is structured and bound together by the MinimalGLSPModule",
+			"typeId": "#exercise",
+			"content": [
+				{
+					"html": "<p>The minimal example is a very simple starting point to understand the principles of the glsp project.<br />Right now we have only one node-type which is a plain rectangle that can be resized and deleted.<br /></p><h4>Server part</h4><p>In this example the server consists of one single bundle with four files. <br />The most important one of those is: <code><i>'MinimalGLSPModule.java'</i></code> which can be found in the 'glsp-examples/minimal/server/org.eclipse.glsp.example.minimal' directory.<br />Let's open it. Please open the file now.</p>"
+				},
+				{
+					"hint": {
+						"text": "Can't find it?",
+						"content": [
+							{
+								"button": {
+									"text": "Open File",
+									"commands": [
+										{
+											"openFile": "glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/MinimalGLSPModule.java"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"html": "<p>Inside of this file you can see the configuration of the server.<br>First of all there is the <code><i>ModelFactory</i></code> which is responsible for loading the original models and creating graph models out of them. For simplicity it loads the model from a file.</p>"
+				},
+				{
+					"image": {
+						"src": "https://raw.githubusercontent.com/eclipsesource/glsp-tutorial/main/.tutorial/images/code-snip1.png",
+						"description": "GLSP",
+						"width": "80%"
+					}
+				},
+				{
+					"html": "<p>Other than that, there is the <code><i>DiagramConfiguration</i></code>. It configures editing hints. In this example we have just one node edit-hint. We will need to edit this file again once we have created the handler</p>"
+				}
+			]
+		},
+		{
+			"title": "Modify nodes",
+			"description": "Learn how to modify existing nodes in the minimal example",
+			"typeId": "#exercise",
+			"content": [
+				{
+					"html": "<br><h4>CreateNodeOperationHandler</h4><p>The next file <code><i>MinimalCreateNodeOperationHandler.java</i></code> represents the actual node. It contains the code which is executed when we add a new node.</p>"
+				},
+				{
+					"hint": {
+						"text": "Having difficulities?",
+						"content": [
+							{
+								"button": {
+									"text": "Open File",
+									"commands": [
+										{
+											"openFile": "glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/handler/MinimalCreateNodeOperationHandler.java"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"html": "<p>As soon as you register a <code><i>CreateNodeHandler</i></code> it will appear in the pallet of the Diagram Editor. <br>In this file you can change the look of the node. <br>Try to resize the node by changing both of it's values in the size function to 20, to make it square.</p>"
+				},
+				{
+					"hint": {
+						"text": "Having difficulities?",
+						"content": [
+							{
+								"html": "<p>Change the first value (40) to 20 and check if it changes when you add a new node.</p>"
+							},
+							{
+								"image": {
+									"src": "https://raw.githubusercontent.com/eclipsesource/glsp-tutorial/main/.tutorial/images/code-snip2.png",
+									"description": "GLSP",
+									"width": "80%"
+								}
+							}
+						]
+					}
+				},
+				{
+					"html": "<p>In order to see the changes let's re-build the example:</p>"
+				},
+				{
+					"button": {
+						"text": "Re-Build Minimal Example",
+						"commands": [
+							{
+								"terminalCommands": [
+									"cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install",
+									"cd glsp-examples/minimal/client/minimal-theia && yarn copy:server",
+									"kill -9 $(lsof -t -i:3000)",
+									"kill -9 $(lsof -t -i:5013)",
+									"cd glsp-examples/minimal/client && yarn start:browser"
+								]
+							}
+						]
+					}
+				}
+			],
+			"test": [
+				{
+					"tests": [
+						{
+							"testName": "Checking files in current directory",
+							"command": {
+								"checkIfFilesExist": [
+									"glsp-examples/.gitignore",
+									"glsp-examples/README.md",
+									"glsp-examples/CONTRIBUTING.md",
+									"glsp-examples/Jenkinsfile",
+									"glsp-examples/LICENSE",
+									"glsp-examples/minimal/client/workspace/example.minimal",
+									"glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/handler/MinimalCreateNodeOperationHandler.java",
+									"glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/MinimalDiagramConfiguration.java",
+									"glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/MinimalGLSPModule.java",
+									"glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/MinimalServerLauncher.java"
+								]
+							}
+						}
+					]
+				},
+				{
+					"fileName": "glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/handler/MinimalCreateNodeOperationHandler.java",
+					"solution": ".tutorial/solution/MinimalCreateNodeOperationHandler.java",
+					"tests": [
+						{
+							"testName": "Running Unit Test",
+							"command": {
+								"terminalCommands": [
+									"cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn test -DskipTests=false"
+								]
+							}
+						}
+					]
+				}
+			],
+			"solve": [
+				{
+					"terminalCommands": [
+						"cp .tutorial/solution/MinimalCreateNodeOperationHandler.java glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/handler/MinimalCreateNodeOperationHandler.java",
+						"cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install",
+						"cd glsp-examples/minimal/client/minimal-theia && yarn copy:server"
+					]
+				}
+			]
+		},
+		{
+			"title": "Add nodes",
+			"description": "Learn how to create your custom nodes in the minimal example",
+			"typeId": "#exercise",
+			"content": [
+				{
+					"html": "<p>Now we want to create another node. The easiest way to create another node type is to simply duplicate the file MinimalCreateNodeOperationHandler.java and call it say MinimalCreateNewNodeOperationHandler.java</p>"
+				},
+				{
+					"hint": {
+						"text": "Having difficulities?",
+						"content": [
+							{
+								"button": {
+									"text": "Create new Handler",
+									"commands": [
+										{
+											"terminalCommands": [
+												"cp glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/handler/MinimalCreateNodeOperationHandler.java glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/handler/MinimalCreateNewNodeOperationHandler.java"
+											]
+										},
+										{
+											"openFile": "glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/handler/MinimalCreateNewNodeOperationHandler.java"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"html": "<p>In here give it a different type name (Exchange the value of <code><i>DefaultTypes.Node</i></code>). Also assign a different CSS-class to it. You can use pseudo values like 'new-node' here. And finally assign a different name to the palette label.</p>"
+				},
+				{
+					"hint": {
+						"text": "Having difficulities?",
+						"content": [
+							{
+								"button": {
+									"text": "Compare Node Handler",
+									"commands": [
+										{
+											"fileDiff": {
+												"fileName": "glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/handler/MinimalCreateNewNodeOperationHandler.java",
+												"solution": ".tutorial/solution/MinimalCreateNewNodeOperationHandler.java"
+											}
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"html": "<p>In order to see our new node we have to get back to <code><i>MinimalGLSPModule.java</i></code> which we looked at before, to register this new <code><i>CreateNewNodeOperationHandler</i></code>.</p>"
+				},
+				{
+					"hint": {
+						"text": "Having difficulities?",
+						"content": [
+							{
+								"button": {
+									"text": "Compare GLSP Module",
+									"commands": [
+										{
+											"fileDiff": {
+												"fileName": "glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/MinimalGLSPModule.java",
+												"solution": ".tutorial/solution/MinimalGLSPModule.java"
+											}
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"html": "<br><h4>Client part</h4><p>The client part consist of mostly theia-application configuration and in the package minimal-glsp we have the file 'di.config.ts' that registers all the node types to respective views. This is done by using 'Sprotty'.</p>"
+				},
+				{
+					"hint": {
+						"text": "Having difficulities?",
+						"content": [
+							{
+								"button": {
+									"text": "Open File",
+									"commands": [
+										{
+											"openFile": "glsp-examples/minimal/client/minimal-glsp/src/di.config.ts"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"html": "<p>So lets add our new node to the Diagram Module by adding a function call of <code>configureModelElement()</code> with our node-name in it. Let's also change the RectangularNode to CircularNode</p>"
+				},
+				{
+					"hint": {
+						"text": "Having difficulities?",
+						"content": [
+							{
+								"html": "<p>Compare the file to a example soulution.</p>"
+							},
+							{
+								"button": {
+									"text": "Compare di.config.ts",
+									"commands": [
+										{
+											"fileDiff": {
+												"fileName": "glsp-examples/minimal/client/minimal-glsp/src/di.config.ts",
+												"solution": ".tutorial/solution/di.config.ts"
+											}
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"html": "<p>Finally, let's rebuild the example:</p>"
+				},
+				{
+					"button": {
+						"text": "Re-Build Minimal Example",
+						"commands": [
+							{
+								"terminalCommands": [
+									"cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install",
+									"cd glsp-examples/minimal/client/minimal-theia && yarn",
+									"kill -9 $(lsof -t -i:3000)",
+									"kill -9 $(lsof -t -i:5013)",
+									"cd glsp-examples/minimal/client && yarn start:browser"
+								]
+							}
+						]
+					}
+				}
+			],
+			"test": [
+				{
+					"tests": [
+						{
+							"testName": "Checking files in current directory",
+							"command": {
+								"checkIfFilesExist": [
+									"glsp-examples/.gitignore",
+									"glsp-examples/README.md",
+									"glsp-examples/CONTRIBUTING.md",
+									"glsp-examples/Jenkinsfile",
+									"glsp-examples/LICENSE",
+									"glsp-examples/minimal/client/workspace/example.minimal",
+									"glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/handler/MinimalCreateNodeOperationHandler.java",
+									"glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/MinimalDiagramConfiguration.java",
+									"glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/MinimalGLSPModule.java",
+									"glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/MinimalServerLauncher.java"
+								]
+							}
+						}
+					]
+				}
+			],
+			"solve": [
+				{
+					"terminalCommands": [
+						"cp .tutorial/solution/MinimalCreateNewNodeOperationHandler.java glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/handler/MinimalCreateNewNodeOperationHandler.java",
+						"cp .tutorial/solution/MinimalGLSPModule.java glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/MinimalGLSPModule.java",
+						"cp .tutorial/solution/di.config.ts glsp-examples/minimal/client/minimal-glsp/src/di.config.ts"
+					]
+				}
+			]
+		}
+	]
+}
