@@ -60,8 +60,18 @@
 					}
 				},
 				{
-					"html": "<p>You should now be able to see the boilerplate of the minimal-glsp example on Port 3000.<br>It might be necessary to refresh the page after waiting some second when you are working inside GitPod.<br>If you're following the tutorial offline, open a browser and navigate to <code>localhost:3000</code>.</p>"
-				}
+					"html": "<p>You should now be able to use the minimal diagram example on Port 3000.<br>It might be necessary to refresh the page after waiting some second.<br>If you're following the tutorial offline, open a browser and navigate to <code>localhost:3000</code>.</p><p>Once the application has launched, you should find an example diagram file in the workspace that you can open. The minimal example diagram editor allows your to create one node type in the diagram editor, represented as a rectangle. Please see the video below for more details on how to use the minimal diagram editor</p>"
+                },
+                {
+					"image": {
+						"src": "https://raw.githubusercontent.com/eclipsesource/glsp-tutorial/main/.tutorial/images/runningminimalexample.gif",
+						"description": "GLSP",
+						"width": "80%"
+					}
+                },
+                {
+					"html": "<p>To verify that everything is set-up correctly, you can use the test button below. Once done, please click next to continue with the next exercise</p>"
+                }
 			],
 			"test": [
 				{
