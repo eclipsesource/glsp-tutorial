@@ -9,7 +9,7 @@ This repository contains the necessary files for following the tutorial based on
 
 Install the [Tutorial Maker Extension](https://open-vsx.org/extension/EclipseSource/tutorialmaker), clone this repository and open it (using VS Code or Eclipse Theia)
 
-Alternativly:
+Alternatively:
 
 ### [Start tutorial with GitPod](https://gitpod.io/#https://github.com/eclipsesource/glsp-tutorial)
 
