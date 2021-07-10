@@ -44,8 +44,8 @@
 			"content": [
 				{
 					"html": "<p>In this step, you will set up your workspace as a preparation for the tutorial. This includes cloning, building and launching a minimal example diagram editor. We will modify and extend this minimal editor in the following exercises.</p><p><i>If you are following this tutorial inside the online IDE GitPod, you can skip this step, since the </i><code>glsp-examles</code><i> folder has already been cloned into your workspace and the dependencies installed running </i><code>mvn clean install</code><i> and </i><code>yarn</code><i> in the server and client respectively.</i></p><p>If you follow this tutorial offline, or without any prebuild functionality, you can do these steps by yourself as descibe in the following.<br>Please follow these steps:<br>Clone <a href='https://github.com/eclipse-glsp/glsp-examples.git'>GLSP Repository</a> into your workspace.<br>Change directory and run: <br><code>cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install<br>cd ../../client && yarn</code><br>from the terminal. This will take a few minutes to complete.</p><p>You can click on the bottom below to do these steps automatically.</p>"
-                },
-                {
+				},
+				{
 					"button": {
 						"text": "Clone and build Minimal Example",
 						"commands": [
@@ -53,15 +53,18 @@
 								"terminalCommands": [
 									"kill -9 $(lsof -t -i:3000)",
 									"kill -9 $(lsof -t -i:5013)",
+									"git clone https://github.com/eclipse-glsp/glsp-examples.git",
+									"cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install",
+									"cd glsp-examples/minimal/client && yarn",
 									"cd glsp-examples/minimal/client && yarn start:browser"
 								]
 							}
 						]
 					}
-                },
-                {
+				},
+				{
 					"html": "<p>After that, to run the minimal example click on the button below or run the following commands in the terminal.<br><code>cd minimal/client<br>yarn start:browser</code></p><p>Again, you can use the Button below to do that automatically:</p>"
-                },
+				},
 				{
 					"button": {
 						"text": "Launch Minimal Example",
@@ -78,17 +81,17 @@
 				},
 				{
 					"html": "<p>You should now be able to use the minimal diagram example on Port 3000.<br>It might be necessary to refresh the page after waiting some second.<br>If you're following the tutorial offline, open a browser and navigate to <code>localhost:3000</code>.</p><p>Once the application has launched, you should find an example diagram file in the workspace that you can open. The minimal example diagram editor allows your to create one node type in the diagram editor, represented as a rectangle. Please see the video below for more details on how to use the minimal diagram editor</p>"
-                },
-                {
+				},
+				{
 					"image": {
 						"src": "https://raw.githubusercontent.com/eclipsesource/glsp-tutorial/main/.tutorial/images/runningminimalexample.gif",
 						"description": "GLSP",
 						"width": "80%"
 					}
-                },
-                {
+				},
+				{
 					"html": "<p>To verify that everything is set-up correctly, you can use the test button below. Once done, please click next to continue with the next exercise</p>"
-                }
+				}
 			],
 			"test": [
 				{
@@ -118,8 +121,8 @@
 					"terminalCommands": [
 						"git clone https://github.com/eclipse-glsp/glsp-examples.git",
 						"cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install",
-                        "cd glsp-examples/minimal/client && yarn",
-                        "kill -9 $(lsof -t -i:3000)",
+						"cd glsp-examples/minimal/client && yarn",
+						"kill -9 $(lsof -t -i:3000)",
 						"kill -9 $(lsof -t -i:5013)",
 						"cd glsp-examples/minimal/client && yarn start:browser"
 					]
