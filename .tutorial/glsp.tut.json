@@ -135,8 +135,8 @@
 			]
 		},
 		{
-			"title": "The Minimal GLSP Module",
-			"description": "Learn how the minimal glsp example is structured and bound together by the MinimalGLSPModule",
+			"title": "A minimal GLSP Server",
+			"description": "Learn about the basic building blocks of a GLSP server.",
 			"typeId": "#exercise",
 			"content": [
 				{
@@ -288,7 +288,7 @@
 		},
 		{
 			"title": "Add nodes",
-			"description": "Learn how to create your custom nodes in the minimal example",
+			"description": "Learn how to add your custom nodes in the minimal example",
 			"typeId": "#exercise",
 			"content": [
 				{
