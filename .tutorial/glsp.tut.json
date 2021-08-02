@@ -140,7 +140,7 @@
 			"typeId": "#exercise",
 			"content": [
 				{
-					"html": "<p>The minimal example is a very simple starting point to understand the principles of the glsp project.<br />Right now we have only one node-type which is a plain rectangle that can be resized and deleted.<br /></p><h4>Server part</h4><p>In this example the server consists of one single bundle with four files. <br />The most important one of those is: <code><i>'MinimalGLSPModule.java'</i></code> which can be found in the 'glsp-examples/minimal/server/org.eclipse.glsp.example.minimal' directory.<br />Let's open it. Please open the file now.</p>"
+					"html": "<p>The minimal example is a very simple starting point to understand the principles of the GLSP project.<br />Right now we have only one node-type which is a plain rectangle that can be resized and deleted.<br /></p><h4>Server part</h4><p>In this example the server consists of one single bundle with four files. <br />The most important one of those is: <code><i>'MinimalGLSPModule.java'</i></code> which can be found in the 'glsp-examples/minimal/server/org.eclipse.glsp.example.minimal' directory.<br />Let's open it. Please open the file now.</p>"
 				},
 				{
 					"hint": {
@@ -160,17 +160,13 @@
 					}
 				},
 				{
-					"html": "<p>Inside of this file you can see the configuration of the server.<br>First of all there is the <code><i>ModelFactory</i></code> which is responsible for loading the original models and creating graph models out of them. For simplicity it loads the model from a file.</p>"
+					"html": "<p>Inside of this file you can see the basic configuration of the server.<br>The <code><i>ModelFactory</i></code> is responsible for loading diagrams and creating graph models out of them. In the minimal example, a pre-implemented model factory is used that loads the diagram from a JSON file.</p>"
 				},
 				{
-					"image": {
-						"src": "https://raw.githubusercontent.com/eclipsesource/glsp-tutorial/main/.tutorial/images/code-snip1.png",
-						"description": "GLSP",
-						"width": "80%"
-					}
+					"html": "<p><code><i>OperationHandlers</i></code> implement the actual business logic of the diagram. In the minimal example, there is one handler (<code><i>MinimalCreateNodeOperationHandler</i></code>), responsible for creating the default node. Note that other features in the minimal example, such as resizing and moving, are actually already provided by the framework. Therefore, there is not handler for them, but the features are just turned on.</p>"
 				},
 				{
-					"html": "<p>Other than that, there is the <code><i>DiagramConfiguration</i></code>. It configures editing hints. In this example we have just one node edit-hint. We will need to edit this file again once we have created the handler</p>"
+					"html": "<p>The configuration of available features per node is done in the <code><i>DiagramConfiguration</i></code> via editing hints. In this example we have just one node edit-hint for the default node.</p>"
 				}
 			]
 		},
@@ -180,7 +176,7 @@
 			"typeId": "#exercise",
 			"content": [
 				{
-					"html": "<br><h4>CreateNodeOperationHandler</h4><p>The next file <code><i>MinimalCreateNodeOperationHandler.java</i></code> represents the actual node. It contains the code which is executed when we add a new node.</p>"
+					"html": "<br><h4>CreateNodeOperationHandler</h4><p>The next file <code><i>MinimalCreateNodeOperationHandler.java</i></code> is the actual custom business logic of the minimal diagram. It contains the code which is executed when we add a new node.</p>"
 				},
 				{
 					"hint": {
@@ -200,7 +196,7 @@
 					}
 				},
 				{
-					"html": "<p>As soon as you register a <code><i>CreateNodeHandler</i></code> it will appear in the pallet of the Diagram Editor. <br>In this file you can change the look of the node. <br>Try to resize the node by changing both of it's values in the size function to 20, to make it square.</p>"
+					"html": "<p>Any registered <code><i>CreateNodeHandler</i></code> will by default create an new entry in the pallet of the Diagram Editor. <br>The handler creates the visual representation and thereby influences the look of the created node. <br>Try to change the default size of the node by changing both of it's values in the size function to 20, to make it square.</p>"
 				},
 				{
 					"hint": {
@@ -292,7 +288,7 @@
 			"typeId": "#exercise",
 			"content": [
 				{
-					"html": "<p>Now we want to create another node. The easiest way to create another node type is to simply duplicate the file MinimalCreateNodeOperationHandler.java and call it say MinimalCreateNewNodeOperationHandler.java</p>"
+					"html": "<p>Now let's create another node type. This will require a second operation handler. The easiest way to create another node type is to simply duplicate the file MinimalCreateNodeOperationHandler.java and call it say MinimalCreateNewNodeOperationHandler.java</p>"
 				},
 				{
 					"hint": {
@@ -317,7 +313,7 @@
 					}
 				},
 				{
-					"html": "<p>In here give it a different type name (Exchange the value of <code><i>DefaultTypes.Node</i></code>). Also assign a different CSS-class to it. You can use pseudo values like 'new-node' here. And finally assign a different name to the palette label.</p>"
+					"html": "<p>In the new handler give it a different type name (Exchange the value of <code><i>DefaultTypes.Node</i></code>). Also assign a different CSS-class to it. You can use pseudo values like 'new-node' here. And finally assign a different name to the palette label.</p>"
 				},
 				{
 					"hint": {
@@ -363,7 +359,7 @@
 					}
 				},
 				{
-					"html": "<br><h4>Client part</h4><p>The client part consist of mostly theia-application configuration and in the package minimal-glsp we have the file 'di.config.ts' that registers all the node types to respective views. This is done by using 'Sprotty'.</p>"
+					"html": "<br><h4>Client part</h4><p>The client part consist of mostly theia-application configuration and in the package minimal-glsp we have the file 'di.config.ts' that registers all the node types to respective shapes.</p>"
 				},
 				{
 					"hint": {
@@ -383,14 +379,14 @@
 					}
 				},
 				{
-					"html": "<p>So lets add our new node to the Diagram Module by adding a function call of <code>configureModelElement()</code> with our node-name in it. Let's also change the RectangularNode to CircularNode</p>"
+					"html": "<p>So lets add our new node to the Diagram Module by adding a function call of <code>configureModelElement()</code> with our node-name in it. Let's use a circle shape for our new node, so CircularNode and CircularNodeView.</p>"
 				},
 				{
 					"hint": {
 						"text": "Having difficulities?",
 						"content": [
 							{
-								"html": "<p>Compare the file to a example soulution.</p>"
+								"html": "<p>Compare the file to a example solution.</p>"
 							},
 							{
 								"button": {
@@ -409,7 +405,7 @@
 					}
 				},
 				{
-					"html": "<p>Finally, let's rebuild the example:</p>"
+					"html": "<p>Finally, let's rebuild the example and try the new node type, it will be available in the palette:</p>"
 				},
 				{
 					"button": {
@@ -426,6 +422,9 @@
 							}
 						]
 					}
+				},
+				{
+					"html": "<p>Thank you for completing this short tutorial. We are happy for any feedback about it, please use <a href='https://github.com/eclipsesource/glsp-tutorial'>this repository</a> and create issues. We are aware that this tutorial is very short and only covers some basics. If you want to see more content like this, please get in contact with us! Finally, please have a look at the <a href='https://www.eclipse.org/glsp/'>GLSP website</a> for more documentation</p>"
 				}
 			],
 			"test": [
