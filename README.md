@@ -1,5 +1,8 @@
 # GLSP Tutorial
 
+## BETA VERSION
+This tutorial is currently in open beta version. There might be issues and glitches in it. We are very happy for any feedback and will try to incoporate it. Please report issues on this repository to provide feedback!
+
 ## Eclipse Graphical Language Server Platform (GLSP)
 
 The [Graphical Language Server Platform (GLSP)](https://github.com/eclipse-glsp/glsp) provides extensible components for the development of diagram editors including edit functionality in (distributed) web-applications via a client-server protocol.
@@ -7,7 +10,7 @@ This repository contains the necessary files for following the tutorial based on
 
 ## Start Tutorial
 
-Install the [Tutorial Maker Extension](https://open-vsx.org/extension/EclipseSource/tutorialmaker), clone this repository and open it (using VS Code or Eclipse Theia)
+Install the [Tutorial Maker Extension](https://open-vsx.org/extension/EclipseSource/tutorialmaker), clone this repository and open it (using VS Code or Eclipse Theia). If you do not use Open VSX as a source of extensions, [download the tutorial extension](https://open-vsx.org/api/EclipseSource/tutorialmaker/0.0.3/file/EclipseSource.tutorialmaker-0.0.3.vsix) and install it manually as vsix.
 
 Alternatively:
 
