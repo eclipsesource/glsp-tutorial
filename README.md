@@ -1,7 +1,7 @@
 # GLSP Tutorial
 
 ## BETA VERSION
-This tutorial is currently in an open beta version. There might be issues and glitches in it. We are very happy for any feedback and will try to incorporate it. Please report issues on this repository to provide feedback!
+This tutorial is currently in an open beta version. There might be issues and glitches in the current version of the tutorial. We are very happy for any feedback and will do our best to address your feedback. Please [report issues](https://github.com/eclipsesource/glsp-tutorial/issues/new/choose) on this repository to provide feedback!
 
 ## Eclipse Graphical Language Server Platform (GLSP)
 
