@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021 EclipseSource and others.
+ * Copyright (c) 2020 EclipseSource and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0 which is available at
@@ -13,11 +13,13 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import "../css/diagram.css";
+import '../css/diagram.css';
 
 import {
     boundsModule,
     buttonModule,
+    CircularNode,
+    CircularNodeView,
     configureModelElement,
     ConsoleLogger,
     defaultGLSPModule,
@@ -41,8 +43,6 @@ import {
     paletteModule,
     RectangularNode,
     RectangularNodeView,
-    CircularNode,
-    CircularNodeView,
     routingModule,
     SGraphView,
     toolFeedbackModule,
@@ -51,8 +51,8 @@ import {
     validationModule,
     viewportModule,
     zorderModule
-} from "@eclipse-glsp/client";
-import { Container, ContainerModule } from "inversify";
+} from '@eclipse-glsp/client';
+import { Container, ContainerModule } from 'inversify';
 
 const minimalDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
     rebind(TYPES.ILogger).to(ConsoleLogger).inSingletonScope();

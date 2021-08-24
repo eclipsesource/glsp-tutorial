@@ -51,12 +51,12 @@
 						"commands": [
 							{
 								"terminalCommands": [
-									"kill -9 $(lsof -t -i:3000)",
-									"kill -9 $(lsof -t -i:5013)",
+									"silently kill -9 $(lsof -t -i:3000)",
+									"silently kill -9 $(lsof -t -i:5013)",
 									"git clone https://github.com/eclipse-glsp/glsp-examples.git",
 									"cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install",
 									"cd glsp-examples/minimal/client && yarn",
-									"cd glsp-examples/minimal/client && yarn start:browser"
+									"silently cd glsp-examples/minimal/client && yarn start:browser"
 								]
 							}
 						]
@@ -71,9 +71,9 @@
 						"commands": [
 							{
 								"terminalCommands": [
-									"kill -9 $(lsof -t -i:3000)",
-									"kill -9 $(lsof -t -i:5013)",
-									"cd glsp-examples/minimal/client && yarn start:browser"
+									"silently kill -9 $(lsof -t -i:3000)",
+									"silently kill -9 $(lsof -t -i:5013)",
+									"silently cd glsp-examples/minimal/client && yarn start:browser"
 								]
 							}
 						]
@@ -122,9 +122,9 @@
 						"git clone https://github.com/eclipse-glsp/glsp-examples.git",
 						"cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install",
 						"cd glsp-examples/minimal/client && yarn",
-						"kill -9 $(lsof -t -i:3000)",
-						"kill -9 $(lsof -t -i:5013)",
-						"cd glsp-examples/minimal/client && yarn start:browser"
+						"silently kill -9 $(lsof -t -i:3000)",
+						"silently kill -9 $(lsof -t -i:5013)",
+						"silently cd glsp-examples/minimal/client && yarn start:browser"
 					]
 				}
 			],
@@ -226,9 +226,9 @@
 								"terminalCommands": [
 									"cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install",
 									"cd glsp-examples/minimal/client/minimal-theia && yarn copy:server",
-									"kill -9 $(lsof -t -i:3000)",
-									"kill -9 $(lsof -t -i:5013)",
-									"cd glsp-examples/minimal/client && yarn start:browser"
+									"silently kill -9 $(lsof -t -i:3000)",
+									"silently kill -9 $(lsof -t -i:5013)",
+									"silently cd glsp-examples/minimal/client && yarn start:browser"
 								]
 							}
 						]
@@ -277,7 +277,10 @@
 					"terminalCommands": [
 						"cp .tutorial/solution/MinimalCreateNodeOperationHandler.java glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/main/java/org/eclipse/glsp/example/minimal/handler/MinimalCreateNodeOperationHandler.java",
 						"cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install",
-						"cd glsp-examples/minimal/client/minimal-theia && yarn copy:server"
+						"cd glsp-examples/minimal/client/minimal-theia && yarn copy:server",
+						"silently kill -9 $(lsof -t -i:3000)",
+						"silently kill -9 $(lsof -t -i:5013)",
+						"silently cd glsp-examples/minimal/client && yarn start:browser"
 					]
 				}
 			]
@@ -414,10 +417,10 @@
 							{
 								"terminalCommands": [
 									"cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install",
-									"cd glsp-examples/minimal/client/minimal-theia && yarn",
-									"kill -9 $(lsof -t -i:3000)",
-									"kill -9 $(lsof -t -i:5013)",
-									"cd glsp-examples/minimal/client && yarn start:browser"
+									"cd glsp-examples/minimal/client && yarn",
+									"silently kill -9 $(lsof -t -i:3000)",
+									"silently kill -9 $(lsof -t -i:5013)",
+									"silently cd glsp-examples/minimal/client && yarn start:browser"
 								]
 							}
 						]

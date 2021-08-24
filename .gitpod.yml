@@ -9,7 +9,7 @@ ports:
 
 # List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
 tasks:
-  - prebuild: git clone https://github.com/eclipse-glsp/glsp-examples.git && cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install && cd ../../client && yarn && cd ../../.. &&  mkdir -p ./glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/test/java/org/eclipse/glsp/example/minimal/handler/ && cp .tutorial/test/TestMinimalCreateNodeOperationHandler.java ./glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/test/java/org/eclipse/glsp/example/minimal/handler/ && cp .tutorial/pom.xml ./glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/
+  - init: git clone https://github.com/eclipse-glsp/glsp-examples.git && cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install && cd ../../client && yarn && cd ../../.. &&  mkdir -p ./glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/test/java/org/eclipse/glsp/example/minimal/handler/ && cp .tutorial/test/TestMinimalCreateNodeOperationHandler.java ./glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/src/test/java/org/eclipse/glsp/example/minimal/handler/ && cp .tutorial/pom.xml ./glsp-examples/minimal/server/org.eclipse.glsp.example.minimal/
 
 vscode:
   extensions:
