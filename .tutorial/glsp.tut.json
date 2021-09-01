@@ -20,7 +20,7 @@
 					}
 				},
 				{
-					"html": "<p>The Eclipse GLSP Project consists of a Diagram client and a Graphical Language Server. The Diagram client is responsible for the visual representation, while the Graphical Language Server is responsible for the deeper logic behind the modeling language. They are connected via the Graphical Language Server Protocol.</p>"
+					"html": "<p>The Eclipse GLSP project consists of a <em>diagram client</em> and a <em>diagram server</em>. The diagram client is responsible for the visual representation, while the diagram server is responsible for the business logic behind the graphical modeling language. They are connected via the Graphical Language Server Protocol.</p>"
 				},
 				{
 					"image": {
@@ -30,10 +30,10 @@
 					}
 				},
 				{
-					"html": "<p>We will have a closer look at the following components:<ul><li>Graphical Model Editor Client</li><ul><li>The client is a ready-to-use generic component that does not need to be reimplemented for specific diagrams. It is implemented based on HTML5, Typescript, Sprotty and SVG. The generic GLSP diagram client can be connected to any domain-specific GLSP server via the defined protocol to support a specific diagram type. Furthermore, the diagram client can be customized and integrated in a website, a VS Code Client, a Theia Client or run as a standalone Client.</li></ul><li>Graphical Language Server Protocol</li><ul><li>Following the successful pattern provided by the language server protocol (LSP) for textual languages, GLSP provides a defined protocol for the communication between the GLSP client and the server. In this modular architecture, server and client are well encapsulated and can be developed independantly.</li></ul><li>Graphical Language Server</li><ul><li>Enabled by the flexible protocol-based architecture, a domain-specific GLSP server can be implemented in any preferred technology. Therefore, you can easily integrate a GLSP server into an existing environment and reuse the domain-specific business and diagram logic. GLSP provides a frame for the implementation of GLSP servers using Java, as well as integrations with EMF and other existing modeling technologies.</li></ul></ul></p>"
+					"html": "<p>We will have a closer look at the following components:<ul><li>Diagram Client</li><ul><li>The diagram client is a mostly generic component that does not need to be reimplemented for specific diagrams. The client is based on HTML5, Typescript, Sprotty and SVG. The generic GLSP diagram client can be connected to any domain-specific GLSP diagram server via the defined protocol to support a specific diagram type. Furthermore, the diagram client can be customized and integrated in a website, a VS Code Client, a Theia Client or run as a standalone Client.</li></ul><li>Graphical Language Server Protocol</li><ul><li>Following the successful pattern provided by the language server protocol (LSP) for textual languages, GLSP provides a defined protocol for the communication between the GLSP client and the server. In this modular architecture, server and client are well encapsulated and can be developed independantly.</li></ul><li>Graphical Language Server</li><ul><li>Enabled by the flexible protocol-based architecture, a domain-specific GLSP server can be implemented in any preferred technology. Therefore, you can easily integrate a GLSP server into an existing environment and reuse the domain-specific business and diagram logic. GLSP provides a frame for the implementation of GLSP servers using Java, as well as integrations with EMF and other existing modeling technologies.</li></ul></ul></p>"
 				},
 				{
-					"html": "<p>In the following exercises we will show you how you can build and modify a simple version yourself. We will integrate the client in Eclipse Theia and use a Java Graphical Language Server</p>"
+					"html": "<p>In the following exercises we will show you how you can build and modify a simple diagram editor yourself. We will integrate the client in Eclipse Theia and develop a Java-based diagram server</p>"
 				}
 			]
 		},
@@ -80,7 +80,7 @@
 					}
 				},
 				{
-					"html": "<p>You should now be able to use the minimal diagram example on Port 3000.<br>It might be necessary to refresh the page after waiting some second.<br>If you're following the tutorial offline, open a browser and navigate to <code>localhost:3000</code>.</p><p>Once the application has launched, you should find an example diagram file in the workspace that you can open. The minimal example diagram editor allows your to create one node type in the diagram editor, represented as a rectangle. Please see the video below for more details on how to use the minimal diagram editor</p>"
+					"html": "<p>You should now be able to use the minimal diagram example on port 3000.<br>It might be necessary to refresh the page after waiting some second.<br>If you're following the tutorial offline, open a browser and navigate to <code><a href=\"http://localhost:3000\">localhost:3000</a></code>.</p><p>Once the application has launched, you should find an example diagram file in the workspace that you can open. The minimal example diagram editor allows your to create one node type in the diagram editor, represented as a rectangle. Please see the video below for more details on how to use the minimal diagram editor</p>"
 				},
 				{
 					"image": {
@@ -90,7 +90,7 @@
 					}
 				},
 				{
-					"html": "<p>To verify that everything is set-up correctly, you can use the test button below. Once done, please click next to continue with the next exercise</p>"
+					"html": "<p>To verify that everything is set up correctly, you can use the test button below. Once done, please click next to continue with the next exercise</p>"
 				}
 			],
 			"test": [
@@ -140,7 +140,7 @@
 			"typeId": "#exercise",
 			"content": [
 				{
-					"html": "<p>The minimal example is a very simple starting point to understand the principles of the GLSP project.<br />Right now we have only one node-type which is a plain rectangle that can be resized and deleted.<br /></p><h4>Server part</h4><p>In this example the server consists of one single bundle with four files. <br />The most important one of those is: <code><i>'MinimalGLSPModule.java'</i></code> which can be found in the 'glsp-examples/minimal/server/org.eclipse.glsp.example.minimal' directory.<br />Let's open it. Please open the file now.</p>"
+					"html": "<p>The minimal example is a very simple starting point to understand the principles of the GLSP project.<br />Right now we have only one node type, which is a plain rectangle that can be resized and deleted.<br /></p><h4>Server part</h4><p>In this example the server consists of one single bundle with four files. <br />The most important one of those is: <code><i>'MinimalGLSPModule.java'</i></code> which can be found in the 'glsp-examples/minimal/server/org.eclipse.glsp.example.minimal' directory.<br />Let's open it. Please open the file now.</p>"
 				},
 				{
 					"hint": {
@@ -196,14 +196,14 @@
 					}
 				},
 				{
-					"html": "<p>Any registered <code><i>CreateNodeHandler</i></code> will by default create an new entry in the pallet of the Diagram Editor. <br>The handler creates the visual representation and thereby influences the look of the created node. <br>Try to change the default size of the node by changing both of it's values in the size function to 20, to make it square.</p>"
+					"html": "<p>Any registered <code><i>CreateNodeHandler</i></code> will by default create an new entry in the pallet of the diagram editor. <br>The handler creates the visual representation and thereby influences the look of the created node. <br>Try to change the default size of the node by changing both of it's values in the size function to 20, to make it square.</p>"
 				},
 				{
 					"hint": {
 						"text": "Having difficulities?",
 						"content": [
 							{
-								"html": "<p>Change the first value (40) to 20 and check if it changes when you add a new node.</p>"
+								"html": "<p>Change the first value (40) to 20 and check if it changes the node size when you add a new node.</p>"
 							},
 							{
 								"image": {
@@ -362,7 +362,7 @@
 					}
 				},
 				{
-					"html": "<br><h4>Client part</h4><p>The client part consist of mostly theia-application configuration and in the package minimal-glsp we have the file 'di.config.ts' that registers all the node types to respective shapes.</p>"
+					"html": "<br><h4>Client part</h4><p>The client part mostly consists of Theia boilerplate code. However, in the package minimal-glsp we have the file 'di.config.ts' that registers all the node types to respective shapes.</p>"
 				},
 				{
 					"hint": {
@@ -382,7 +382,7 @@
 					}
 				},
 				{
-					"html": "<p>So lets add our new node to the Diagram Module by adding a function call of <code>configureModelElement()</code> with our node-name in it. Let's use a circle shape for our new node, so CircularNode and CircularNodeView.</p>"
+					"html": "<p>So lets add our new node to the diagram module by adding a function call of <code>configureModelElement()</code> with our node-name in it. Let's use a circle shape for our new node, so <code>CircularNode</code> and <code>CircularNodeView</code>.</p>"
 				},
 				{
 					"hint": {
@@ -427,7 +427,7 @@
 					}
 				},
 				{
-					"html": "<p>Thank you for completing this short tutorial. We are happy for any feedback about it, please use <a href='https://github.com/eclipsesource/glsp-tutorial'>this repository</a> and create issues. We are aware that this tutorial is very short and only covers some basics. If you want to see more content like this, please get in contact with us! Finally, please have a look at the <a href='https://www.eclipse.org/glsp/'>GLSP website</a> for more documentation</p>"
+					"html": "<p>Thank you for completing this short tutorial. We are happy to receive your feedback about it, please use <a href='https://github.com/eclipsesource/glsp-tutorial'>this repository</a> and create issues. We are aware that this tutorial is very short and only covers some basics. If you want to see more content like this, please get in contact with us! Finally, please have a look at the <a href='https://www.eclipse.org/glsp/'>GLSP website</a> for more documentation</p>"
 				}
 			],
 			"test": [
