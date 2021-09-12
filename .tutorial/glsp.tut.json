@@ -233,6 +233,16 @@
 							}
 						]
 					}
+				},
+				{
+					"html": "<p>You should now be able to use the minimal diagram example on Port 3000.<br>It might be necessary to refresh the page after waiting some seconds.<br>If you're following the tutorial offline, open a browser and navigate to <code>localhost:3000</code>.</p><p>Once the application has launched, you should find an example diagram file in the workspace. After opening the file, you should be able to create a new node by clicking on “Minimal Node”. In contrast to the already existing nodes, the now created nodes will be square.  Please refer to the video below.</p>"
+				},
+				{
+					"image": {
+						"src": "https://raw.githubusercontent.com/eclipsesource/glsp-tutorial/main/.tutorial/images/squarenodesexample.gif",
+						"description": "GLSP",
+						"width": "80%"
+					}
 				}
 			],
 			"test": [
