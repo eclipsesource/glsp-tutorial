@@ -80,7 +80,7 @@
 					}
 				},
 				{
-					"html": "<p>You should now be able to use the minimal diagram example on Port 3000.<br>It might be necessary to refresh the page after waiting some second.<br>If you're following the tutorial offline, open a browser and navigate to <code>localhost:3000</code>.</p><p>Once the application has launched, you should find an example diagram file in the workspace that you can open. The minimal example diagram editor allows your to create one node type in the diagram editor, represented as a rectangle. Please see the video below for more details on how to use the minimal diagram editor</p>"
+					"html": "<p>You should now be able to use the minimal diagram example on Port 3000.<br>It might be necessary to refresh the page after waiting some seconds.<br>If you're following the tutorial offline, open a browser and navigate to <code>localhost:3000</code>.</p><p>Once the application has launched, you should find an example diagram file in the workspace that you can open. The minimal example diagram editor allows you to create one node type in the diagram editor, represented as a rectangle. Please see the video below for more details on how to use the minimal diagram editor</p>"
 				},
 				{
 					"image": {
@@ -232,6 +232,16 @@
 								]
 							}
 						]
+					}
+				},
+				{
+					"html": "<p>You should now be able to use the minimal diagram example on Port 3000.<br>It might be necessary to refresh the page after waiting some seconds.<br>If you're following the tutorial offline, open a browser and navigate to <code>localhost:3000</code>.</p><p>Once the application has launched, you should find an example diagram file in the workspace. After opening the file, you should be able to create a new node by clicking on “Minimal Node”. In contrast to the already existing nodes, the now created nodes will be square.  Please refer to the video below.</p>"
+				},
+				{
+					"image": {
+						"src": "https://raw.githubusercontent.com/eclipsesource/glsp-tutorial/main/.tutorial/images/squarenodesexample.gif",
+						"description": "GLSP",
+						"width": "80%"
 					}
 				}
 			],
