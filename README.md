@@ -10,7 +10,7 @@ This repository contains the necessary files for following the tutorial based on
 
 ## Start Tutorial
 
-Install the [Tutorial Maker Extension](https://open-vsx.org/extension/EclipseSource/tutorialmaker), clone this repository and open it (using VS Code or Eclipse Theia). If you do not use Open VSX as a source of extensions, [download the tutorial extension](https://open-vsx.org/api/EclipseSource/tutorialmaker/0.0.3/file/EclipseSource.tutorialmaker-0.0.3.vsix) and install it manually as vsix.
+Install the [Tutorial Maker Extension](https://open-vsx.org/extension/EclipseSource/tutorialmaker), clone this repository and open it (using VS Code or Eclipse Theia). If you do not use Open VSX as a source of extensions, [download the tutorial extension](https://open-vsx.org/extension/EclipseSource/tutorialmaker) (follow the link and click on "download") and install it manually as vsix.
 
 Alternatively:
 
