@@ -427,7 +427,7 @@
 							{
 								"terminalCommands": [
 									"cd glsp-examples/minimal/server/org.eclipse.glsp.example.minimal && mvn clean install",
-									"cd glsp-examples/minimal/client && yarn",
+									"cd glsp-examples/minimal/client/minimal-theia && yarn copy:server",
 									"silently kill -9 $(lsof -t -i:3000)",
 									"silently kill -9 $(lsof -t -i:5013)",
 									"silently cd glsp-examples/minimal/client && yarn start:browser"
